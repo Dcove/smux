@@ -1,11 +1,11 @@
-#!/bin/bash
+!/bin/bash
 #SMUX
 #Make by Dcove.
 green="\033[32m"
 red="\033[31m"
 origin="\033[0m"
-if [ ! -d "$HOME/smux" ] ; then
-	if [ ! -f "$HOME/smux/smuxsh" ] ;then
+if [ -d "$HOME/smux" ] ; then
+	if [ -f "$HOME/smux/smuxsh" ] ;then
 		bash $HOME/smux/smuxsh
 	else
 		touch /$HOME/smux/smuxsh
@@ -113,18 +113,18 @@ function smuxsh() {
 }
 function smuxsh2() {
 	echo `pwd`">"
-	read -p ">" $smuxsha
+	read -p ">" smuxsha
 	case $smuxsha in
 		smuxsh)
 			echo smuxsh菜单
 			echo 1.切换smuxsh使用的shell
-			read $smuxshb
+			read smuxshb
 			case $smuxshb in
 				1)
 					echo 1.bash
 					echo 2.dash
 					echo 3.zsh
-					read $smuxshsh
+					read smuxshsh
 					case $smuxshsh in
 						1)
 							rm -f ~/smux/smuxsh
@@ -159,7 +159,11 @@ function smuxsh2() {
 					smuxsh2
 			esac
 			;;
+		exit)
+			exit 0
+			;;
 		*)
+			touch ~/smux/shdo
 			echo "$smuxsha" >> ~/smux/shdo
 			if [[ $smuxsh = "bash" ]] ; then
 				bash ~/smux/shdo
@@ -174,4 +178,4 @@ function smuxsh2() {
 }
 clear
 logo
-main&
+main

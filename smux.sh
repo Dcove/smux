@@ -4,14 +4,14 @@
 green="\033[32m"
 red="\033[31m"
 origin="\033[0m"
-if [ ! -d "$HOME/.smux" ] ; then
-	if [ ! -f "$HOME/.smux/smuxsh" ] ;then
-		bash $HOME/.smux/smuxsh
+if [ ! -d "$HOME/smux" ] ; then
+	if [ ! -f "$HOME/smux/smuxsh" ] ;then
+		bash $HOME/smux/smuxsh
 	else
-		touch /$HOME/.smux/smuxsh
+		touch /$HOME/smux/smuxsh
 	fi
 else
-	mkdir $HOME/.smux
+	mkdir $HOME/smux
 fi
 function logo(){
 echo -e "$red
@@ -127,22 +127,22 @@ function smuxsh2() {
 					read $smuxshsh
 					case $smuxshsh in
 						1)
-							rm -f ~/.smux/smuxsh
-							echo "smuxsh=bash" >> ~/.smux/shell
+							rm -f ~/smux/smuxsh
+							echo "smuxsh=bash" >> ~/smux/shell
 							clear
 							echo done.
 							exit
 							;;
 						2)	
-							rm -f ~/.smux/smuxsh
+							rm -f ~/smux/smuxsh
 
-							echo "smuxsh=dash" >> ~/.smux/shell
+							echo "smuxsh=dash" >> ~/smux/shell
 							clear
 							echo done.
 							smuxsh
 							;;
 						3)
-							rm -f ~/.smux/smuxsh
+							rm -f ~/smux/smuxsh
 
 							echo "smuxsh=zsh"
 							clear
@@ -160,15 +160,15 @@ function smuxsh2() {
 			esac
 			;;
 		*)
-			echo "$smuxsha" >> ~/.smux/shdo
+			echo "$smuxsha" >> ~/smux/shdo
 			if [[ $smuxsh = "bash" ]] ; then
-				bash ~/.smux/shdo
+				bash ~/smux/shdo
 			elif [[ $smuxsh = "dash" ]] ; then
-				dash ~/.smux/shdo
+				dash ~/smux/shdo
 			elif [[ $smuxsh = "zsh" ]] ; then
-				zsh ~/.smux/shdo
+				zsh ~/smux/shdo
 			fi
-			rm -f ~/.smux/shdo
+			rm -f ~/smux/shdo
 			smuxsh2
 	esac
 }

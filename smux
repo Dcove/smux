@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 #SMUX
 #Make by Dcove.
 green="\033[32m"

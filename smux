@@ -4,6 +4,9 @@
 green="\033[32m"
 red="\033[31m"
 origin="\033[0m"
+smux_color_1="\033[32m"
+smux_color_2="\033[0m"
+smux_color_3="\033[31m"
 if [ -d "$HOME/smux" ] ; then
 	if [ -f "$HOME/smux/smuxsh" ] ;then
 		bash $HOME/smux/smuxsh
@@ -49,7 +52,9 @@ _________________________________________
 |_______________________________________|
 |$green 2.zsh的安装和配置$origin                     |
 |_______________________________________|
-|$green 3.进入SmuxSh$origin                          |
+|$green 3.zsh最美主题powerlevel9k的安装和配置$origin |
+|_______________________________________|
+|$green 4.进入SmuxSh$origin                          |
 |_______________________________________|
 |$green本SMUX具有超级$red牛$green力。$origin                   |
 |_______________________________________|
@@ -93,13 +98,17 @@ case $smuxc1 in
 			esac
 			;;
 		2)
-			pkg install zsh wget
-			sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+			zshinset
 			;;
 		moo)
 			apt moo
 			;;
 		3)
+			zshinset
+			git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+			echo -e "ZSH_THEME=\"powerlevel9k/powerlevel9k\"" >> $HOME/.zshrc
+			;;
+		4)
 			smuxsh
 			;;
 		quit)
@@ -116,7 +125,7 @@ function smuxsh() {
 	smuxsh2
 }
 function smuxsh2() {
-	echo -e "$green"`pwd`"$origin"">$red"
+	echo -e "$smux_color_1"`pwd`"$smux_color_2"">$smux_color_3"
 	read -p ">" smuxsha
 	case $smuxsha in
 		smuxsh)
@@ -124,7 +133,7 @@ function smuxsh2() {
 			echo N/A
 			read smuxshb
 			case $smuxshb in
-						*)
+		*)
 							echo -e "$red""smuxsh现在暂无菜单项"
 							smuxsh2
 			esac
@@ -137,6 +146,13 @@ function smuxsh2() {
 			smuxsh2
 	esac
 }
+function zshinset() {
+			pkg install zsh wget
+			sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+			echo zsh安装完成，Oh-My-ZSH配置完成
+}
+
+
 clear
 logo
 main
